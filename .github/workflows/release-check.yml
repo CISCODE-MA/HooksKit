@@ -32,7 +32,7 @@ jobs:
     env:
       SONAR_HOST_URL: 'https://sonarcloud.io'
       SONAR_ORGANIZATION: 'ciscode'
-      SONAR_PROJECT_KEY: 'CISCODE-MA_PACKAGE_NAME_TEMPLATE'
+      SONAR_PROJECT_KEY: 'CISCODE-MA_HooksKit'
 
     steps:
       - name: Checkout
