@@ -1,28 +1,34 @@
-# Copilot Instructions - React Component Library
+# Copilot Instructions - HooksKit
 
-> **Purpose**: Development guidelines for React component libraries - reusable, well-structured components for modern apps.
+> **Purpose**: Development guidelines for HooksKit — production-ready React hooks with zero runtime deps.
 
 ---
 
 ## 🎯 Module Overview
 
-**Package**: `@ciscode/ui-components` (example)  
-**Type**: React Component Library  
+**Package**: `@ciscode/hooks-kit`  
+**Epic**: COMPT-2 — HooksKit  
+**Type**: React Hooks Library  
 **Framework**: React 18+, TypeScript 5+  
-**Build**: Vite/tsup  
+**Build**: tsup  
 **Testing**: Vitest + React Testing Library  
 **Distribution**: NPM package  
-**Purpose**: Reusable, production-ready React components for building modern UIs
+**Purpose**: 12 production-ready React hooks. Zero runtime deps. SSR-safe.
 
-### Typical Module Responsibilities:
+### Hook Groups:
 
-- Atomic UI components (Button, Input, Card, etc.)
-- Composite components (Form, Modal, Navigation, etc.)
-- Hooks for common patterns
-- Type definitions and props interfaces
-- Accessibility compliance (WCAG 2.1 AA)
-- Theming and customization
-- Comprehensive documentation
+- **State & Storage** (COMPT-30 ✅) — `useDebounce`, `useLocalStorage`, `useSessionStorage`
+- **DOM & Events** (COMPT-31 ✅) — `useMediaQuery`, `useWindowSize`, `useClickOutside`, `useIntersectionObserver`
+- **Async & Lifecycle** — _(upcoming)_
+
+### Module Responsibilities:
+
+- Generic, fully-typed hooks with inference at call site
+- SSR-safe (`typeof window === 'undefined'` guards in every hook)
+- Zero runtime dependencies
+- All listeners registered in `useEffect` and cleaned up on unmount
+- WCAG-accessible patterns where applicable
+- Hooks ≥ 90% coverage
 
 ---
 
@@ -30,28 +36,26 @@
 
 ```
 src/
-  ├── components/                     # React components
-  │   ├── Button/
-  │   │   ├── Button.tsx              # Component
-  │   │   ├── Button.test.tsx         # Tests
-  │   │   ├── Button.types.ts         # Props types
-  │   │   └── index.ts                # Exports
-  │   ├── Input/
-  │   ├── Modal/
-  │   └── Form/
-  ├── hooks/                          # Custom hooks
-  │   ├── useModal.ts
-  │   ├── useForm.ts
-  │   └── useModal.test.ts
-  ├── context/                        # Context providers
-  │   ├── ThemeContext.tsx
-  │   └── FormContext.tsx
-  ├── types/                          # TypeScript types
-  │   └── common.types.ts
-  ├── utils/                          # Utilities
-  │   └── classNameUtils.ts
-  └── index.ts                        # Public API
+  ├── components/                     # Minimal supporting components
+  │   ├── NoopButton.tsx
+  │   └── index.ts
+  ├── hooks/                          # All public hooks
+  │   ├── useDebounce.ts              # COMPT-30 ✅
+  │   ├── useLocalStorage.ts          # COMPT-30 ✅
+  │   ├── useSessionStorage.ts        # COMPT-30 ✅
+  │   ├── storage.ts                  # Internal SSR-safe storage helper
+  │   ├── useMediaQuery.ts            # COMPT-31 ✅
+  │   ├── useWindowSize.ts            # COMPT-31 ✅
+  │   ├── useClickOutside.ts          # COMPT-31 ✅
+  │   ├── useIntersectionObserver.ts  # COMPT-31 ✅
+  │   └── index.ts                    # Hook barrel
+  ├── utils/                          # Framework-agnostic utils
+  │   ├── noop.ts
+  │   └── index.ts
+  └── index.ts                        # Public API (only entry point)
 ```
+
+> ⚠️ Only export from `src/index.ts`. Deep imports are forbidden.
 
 ---
 
