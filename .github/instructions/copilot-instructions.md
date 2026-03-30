@@ -19,12 +19,13 @@
 
 - **State & Storage** (COMPT-30 ✅) — `useDebounce`, `useLocalStorage`, `useSessionStorage`
 - **DOM & Events** (COMPT-31 ✅) — `useMediaQuery`, `useWindowSize`, `useClickOutside`, `useIntersectionObserver`
-- **Async & Lifecycle** — _(upcoming)_
+<<<<<<< HEAD
+- **Async & Lifecycle** (COMPT-32 ✅) — `usePrevious`, `useToggle`, `useInterval`, `useTimeout`, `useIsFirstRender`
 
 ### Module Responsibilities:
 
 - Generic, fully-typed hooks with inference at call site
-- SSR-safe (`typeof window === 'undefined'` guards in every hook)
+- SSR-safe (`typeof window === 'undefined'` guards in every DOM hook)
 - Zero runtime dependencies
 - All listeners registered in `useEffect` and cleaned up on unmount
 - WCAG-accessible patterns where applicable
@@ -48,6 +49,11 @@ src/
   │   ├── useWindowSize.ts            # COMPT-31 ✅
   │   ├── useClickOutside.ts          # COMPT-31 ✅
   │   ├── useIntersectionObserver.ts  # COMPT-31 ✅
+  │   ├── usePrevious.ts              # COMPT-32 ✅
+  │   ├── useToggle.ts                # COMPT-32 ✅
+  │   ├── useInterval.ts              # COMPT-32 ✅
+  │   ├── useTimeout.ts               # COMPT-32 ✅
+  │   ├── useIsFirstRender.ts         # COMPT-32 ✅
   │   └── index.ts                    # Hook barrel
   ├── utils/                          # Framework-agnostic utils
   │   ├── noop.ts
