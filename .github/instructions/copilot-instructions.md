@@ -6,7 +6,7 @@
 
 ## 🎯 Module Overview
 
-**Package**: `@ciscode/reactts-developerkit`  
+**Package**: `@ciscode/hooks-kit`  
 **Epic**: COMPT-2 — HooksKit  
 **Type**: React Hooks Library  
 **Framework**: React 18+, TypeScript 5+  
@@ -17,18 +17,18 @@
 
 ### Hook Groups:
 
-- **State & Storage** — `useDebounce`, `useLocalStorage`, `useSessionStorage`
-- **DOM & Events** — _(upcoming)_
+- **State & Storage** (COMPT-30 ✅) — `useDebounce`, `useLocalStorage`, `useSessionStorage`
+- **DOM & Events** (COMPT-31 ✅) — `useMediaQuery`, `useWindowSize`, `useClickOutside`, `useIntersectionObserver`
 - **Async & Lifecycle** — _(upcoming)_
 
 ### Module Responsibilities:
 
 - Generic, fully-typed hooks with inference at call site
-- SSR-safe (all `window`/`document` access guarded with `typeof window === 'undefined'`)
-- JSON serialization for storage hooks (parse-error fallback to initial value)
+- SSR-safe (`typeof window === 'undefined'` guards in every hook)
 - Zero runtime dependencies
+- All listeners registered in `useEffect` and cleaned up on unmount
 - WCAG-accessible patterns where applicable
-- Comprehensive tests (hooks ≥ 90% coverage)
+- Hooks ≥ 90% coverage
 
 ---
 
@@ -40,13 +40,14 @@ src/
   │   ├── NoopButton.tsx
   │   └── index.ts
   ├── hooks/                          # All public hooks
-  │   ├── storage.ts                  # Internal SSR-safe storage helpers
   │   ├── useDebounce.ts              # COMPT-30 ✅
-  │   ├── useDebounce.test.ts
   │   ├── useLocalStorage.ts          # COMPT-30 ✅
-  │   ├── useLocalStorage.test.ts
   │   ├── useSessionStorage.ts        # COMPT-30 ✅
-  │   ├── useSessionStorage.test.ts
+  │   ├── storage.ts                  # Internal SSR-safe storage helper
+  │   ├── useMediaQuery.ts            # COMPT-31 ✅
+  │   ├── useWindowSize.ts            # COMPT-31 ✅
+  │   ├── useClickOutside.ts          # COMPT-31 ✅
+  │   ├── useIntersectionObserver.ts  # COMPT-31 ✅
   │   └── index.ts                    # Hook barrel
   ├── utils/                          # Framework-agnostic utils
   │   ├── noop.ts
