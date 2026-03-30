@@ -19,8 +19,8 @@
 
 - **State & Storage** (COMPT-30 ✅) — `useDebounce`, `useLocalStorage`, `useSessionStorage`
 - **DOM & Events** (COMPT-31 ✅) — `useMediaQuery`, `useWindowSize`, `useClickOutside`, `useIntersectionObserver`
-<<<<<<< HEAD
 - **Async & Lifecycle** (COMPT-32 ✅) — `usePrevious`, `useToggle`, `useInterval`, `useTimeout`, `useIsFirstRender`
+- **Test Suite** (COMPT-33 ✅) — Full coverage for all 12 hooks, all tests in `src/hooks/__tests__/`
 
 ### Module Responsibilities:
 
@@ -54,7 +54,20 @@ src/
   │   ├── useInterval.ts              # COMPT-32 ✅
   │   ├── useTimeout.ts               # COMPT-32 ✅
   │   ├── useIsFirstRender.ts         # COMPT-32 ✅
-  │   └── index.ts                    # Hook barrel
+  │   ├── index.ts                    # Hook barrel
+  │   └── __tests__/                  # All hook tests (COMPT-33 ✅)
+  │       ├── useDebounce.test.ts
+  │       ├── useLocalStorage.test.ts
+  │       ├── useSessionStorage.test.ts
+  │       ├── useMediaQuery.test.ts
+  │       ├── useWindowSize.test.ts
+  │       ├── useClickOutside.test.ts
+  │       ├── useIntersectionObserver.test.ts
+  │       ├── usePrevious.test.ts
+  │       ├── useToggle.test.ts
+  │       ├── useInterval.test.ts
+  │       ├── useTimeout.test.ts
+  │       └── useIsFirstRender.test.ts
   ├── utils/                          # Framework-agnostic utils
   │   ├── noop.ts
   │   └── index.ts

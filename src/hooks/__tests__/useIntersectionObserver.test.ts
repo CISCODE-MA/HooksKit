@@ -1,7 +1,7 @@
 import { act, renderHook } from '@testing-library/react';
 import { useRef } from 'react';
 import { afterEach, describe, expect, it, vi } from 'vitest';
-import { useIntersectionObserver } from './useIntersectionObserver';
+import { useIntersectionObserver } from '../useIntersectionObserver';
 
 type IntersectionCallback = (entries: IntersectionObserverEntry[]) => void;
 
