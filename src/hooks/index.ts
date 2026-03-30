@@ -4,4 +4,8 @@ export const __hooks_placeholder = true;
 export * from './useDebounce';
 export * from './useLocalStorage';
 export * from './useSessionStorage';
+export * from './useClickOutside';
+export * from './useIntersectionObserver';
+export * from './useMediaQuery';
+export * from './useWindowSize';
 export * from './useNoop';
