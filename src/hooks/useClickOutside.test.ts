@@ -3,6 +3,13 @@ import { useRef } from 'react';
 import { describe, expect, it, vi } from 'vitest';
 import { useClickOutside } from './useClickOutside';
 
+function mountClickOutside(element: HTMLDivElement, handler: ReturnType<typeof vi.fn>) {
+  return renderHook(() => {
+    const ref = useRef<HTMLDivElement>(element);
+    useClickOutside(ref, handler);
+  });
+}
+
 describe('useClickOutside', () => {
   it('calls handler on mousedown outside the ref element', () => {
     const handler = vi.fn();
@@ -11,10 +18,7 @@ describe('useClickOutside', () => {
     outer.appendChild(inner);
     document.body.appendChild(outer);
 
-    const { unmount } = renderHook(() => {
-      const ref = useRef<HTMLDivElement>(inner.parentElement as HTMLDivElement);
-      useClickOutside(ref, handler);
-    });
+    const { unmount } = mountClickOutside(outer, handler);
 
     act(() => {
       document.dispatchEvent(new MouseEvent('mousedown', { bubbles: true }));
@@ -30,10 +34,7 @@ describe('useClickOutside', () => {
     const outer = document.createElement('div');
     document.body.appendChild(outer);
 
-    const { unmount } = renderHook(() => {
-      const ref = useRef<HTMLDivElement>(outer);
-      useClickOutside(ref, handler);
-    });
+    const { unmount } = mountClickOutside(outer, handler);
 
     const outsideNode = document.createElement('span');
     document.body.appendChild(outsideNode);
@@ -55,10 +56,7 @@ describe('useClickOutside', () => {
     outer.appendChild(inner);
     document.body.appendChild(outer);
 
-    const { unmount } = renderHook(() => {
-      const ref = useRef<HTMLDivElement>(outer);
-      useClickOutside(ref, handler);
-    });
+    const { unmount } = mountClickOutside(outer, handler);
 
     act(() => {
       inner.dispatchEvent(new MouseEvent('mousedown', { bubbles: true }));
@@ -74,10 +72,7 @@ describe('useClickOutside', () => {
     const removeSpy = vi.spyOn(document, 'removeEventListener');
     const el = document.createElement('div');
 
-    const { unmount } = renderHook(() => {
-      const ref = useRef<HTMLDivElement>(el);
-      useClickOutside(ref, handler);
-    });
+    const { unmount } = mountClickOutside(el, handler);
 
     unmount();
 

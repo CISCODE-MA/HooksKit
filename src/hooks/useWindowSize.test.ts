@@ -2,6 +2,20 @@ import { act, renderHook } from '@testing-library/react';
 import { afterEach, describe, expect, it, vi } from 'vitest';
 import { getWindowSize, useWindowSize } from './useWindowSize';
 
+function setViewport(width: number, height: number): void {
+  Object.defineProperty(window, 'innerWidth', {
+    writable: true,
+    configurable: true,
+    value: width,
+  });
+
+  Object.defineProperty(window, 'innerHeight', {
+    writable: true,
+    configurable: true,
+    value: height,
+  });
+}
+
 describe('useWindowSize', () => {
   afterEach(() => {
     vi.useRealTimers();
@@ -9,16 +23,7 @@ describe('useWindowSize', () => {
   });
 
   it('returns current window dimensions on mount', () => {
-    Object.defineProperty(window, 'innerWidth', {
-      writable: true,
-      configurable: true,
-      value: 1024,
-    });
-    Object.defineProperty(window, 'innerHeight', {
-      writable: true,
-      configurable: true,
-      value: 768,
-    });
+    setViewport(1024, 768);
 
     const { result } = renderHook(() => useWindowSize());
 
@@ -28,29 +33,11 @@ describe('useWindowSize', () => {
   it('updates size after resize event with 100ms debounce', () => {
     vi.useFakeTimers();
 
-    Object.defineProperty(window, 'innerWidth', {
-      writable: true,
-      configurable: true,
-      value: 1024,
-    });
-    Object.defineProperty(window, 'innerHeight', {
-      writable: true,
-      configurable: true,
-      value: 768,
-    });
+    setViewport(1024, 768);
 
     const { result } = renderHook(() => useWindowSize());
 
-    Object.defineProperty(window, 'innerWidth', {
-      writable: true,
-      configurable: true,
-      value: 1280,
-    });
-    Object.defineProperty(window, 'innerHeight', {
-      writable: true,
-      configurable: true,
-      value: 800,
-    });
+    setViewport(1280, 800);
 
     act(() => {
       window.dispatchEvent(new Event('resize'));
@@ -69,23 +56,14 @@ describe('useWindowSize', () => {
   it('debounces rapid resize events — only last one applies', () => {
     vi.useFakeTimers();
 
-    Object.defineProperty(window, 'innerWidth', { writable: true, configurable: true, value: 800 });
-    Object.defineProperty(window, 'innerHeight', {
-      writable: true,
-      configurable: true,
-      value: 600,
-    });
+    setViewport(800, 600);
 
     const { result } = renderHook(() => useWindowSize());
 
     act(() => {
       window.dispatchEvent(new Event('resize'));
       vi.advanceTimersByTime(30);
-      Object.defineProperty(window, 'innerWidth', {
-        writable: true,
-        configurable: true,
-        value: 1920,
-      });
+      setViewport(1920, 1080);
       window.dispatchEvent(new Event('resize'));
       vi.advanceTimersByTime(30);
     });
