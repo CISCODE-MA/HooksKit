@@ -1,28 +1,34 @@
-# Copilot Instructions - React Component Library
+# Copilot Instructions - HooksKit
 
-> **Purpose**: Development guidelines for React component libraries - reusable, well-structured components for modern apps.
+> **Purpose**: Development guidelines for HooksKit — production-ready React hooks with zero runtime deps.
 
 ---
 
 ## 🎯 Module Overview
 
-**Package**: `@ciscode/ui-components` (example)  
-**Type**: React Component Library  
+**Package**: `@ciscode/reactts-developerkit`  
+**Epic**: COMPT-2 — HooksKit  
+**Type**: React Hooks Library  
 **Framework**: React 18+, TypeScript 5+  
-**Build**: Vite/tsup  
+**Build**: tsup  
 **Testing**: Vitest + React Testing Library  
 **Distribution**: NPM package  
-**Purpose**: Reusable, production-ready React components for building modern UIs
+**Purpose**: 12 production-ready React hooks. Zero runtime deps. SSR-safe.
 
-### Typical Module Responsibilities:
+### Hook Groups:
 
-- Atomic UI components (Button, Input, Card, etc.)
-- Composite components (Form, Modal, Navigation, etc.)
-- Hooks for common patterns
-- Type definitions and props interfaces
-- Accessibility compliance (WCAG 2.1 AA)
-- Theming and customization
-- Comprehensive documentation
+- **State & Storage** — `useDebounce`, `useLocalStorage`, `useSessionStorage`
+- **DOM & Events** — _(upcoming)_
+- **Async & Lifecycle** — _(upcoming)_
+
+### Module Responsibilities:
+
+- Generic, fully-typed hooks with inference at call site
+- SSR-safe (all `window`/`document` access guarded with `typeof window === 'undefined'`)
+- JSON serialization for storage hooks (parse-error fallback to initial value)
+- Zero runtime dependencies
+- WCAG-accessible patterns where applicable
+- Comprehensive tests (hooks ≥ 90% coverage)
 
 ---
 
@@ -30,28 +36,25 @@
 
 ```
 src/
-  ├── components/                     # React components
-  │   ├── Button/
-  │   │   ├── Button.tsx              # Component
-  │   │   ├── Button.test.tsx         # Tests
-  │   │   ├── Button.types.ts         # Props types
-  │   │   └── index.ts                # Exports
-  │   ├── Input/
-  │   ├── Modal/
-  │   └── Form/
-  ├── hooks/                          # Custom hooks
-  │   ├── useModal.ts
-  │   ├── useForm.ts
-  │   └── useModal.test.ts
-  ├── context/                        # Context providers
-  │   ├── ThemeContext.tsx
-  │   └── FormContext.tsx
-  ├── types/                          # TypeScript types
-  │   └── common.types.ts
-  ├── utils/                          # Utilities
-  │   └── classNameUtils.ts
-  └── index.ts                        # Public API
+  ├── components/                     # Minimal supporting components
+  │   ├── NoopButton.tsx
+  │   └── index.ts
+  ├── hooks/                          # All public hooks
+  │   ├── storage.ts                  # Internal SSR-safe storage helpers
+  │   ├── useDebounce.ts              # COMPT-30 ✅
+  │   ├── useDebounce.test.ts
+  │   ├── useLocalStorage.ts          # COMPT-30 ✅
+  │   ├── useLocalStorage.test.ts
+  │   ├── useSessionStorage.ts        # COMPT-30 ✅
+  │   ├── useSessionStorage.test.ts
+  │   └── index.ts                    # Hook barrel
+  ├── utils/                          # Framework-agnostic utils
+  │   ├── noop.ts
+  │   └── index.ts
+  └── index.ts                        # Public API (only entry point)
 ```
+
+> ⚠️ Only export from `src/index.ts`. Deep imports are forbidden.
 
 ---
 
@@ -277,18 +280,17 @@ export type { ButtonProps, ModalProps, InputProps, FormProps } from './component
 **1. Branch Creation:**
 
 ```bash
-feature/UI-MODULE-123-add-datepicker
-bugfix/UI-MODULE-456-fix-modal-focus
-refactor/UI-MODULE-789-extract-button-styles
+feat/COMPT-30-state-storage-hooks
+bugfix/COMPT-XX-short-description
 ```
 
-**2. Task Documentation:**
+> Branch names must reference the Jira ticket (COMPT-XX format). Pull from `develop` before opening PR.
 
-Create task file:
+**PR targets:**
 
-```
-docs/tasks/active/UI-MODULE-123-add-datepicker.md
-```
+- Feature branches → `develop`
+- `develop` → `master` on Friday release only
+- Never open a PR directly to `master`
 
 **Task structure:**
 
