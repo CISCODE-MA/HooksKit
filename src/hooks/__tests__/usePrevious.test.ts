@@ -1,6 +1,6 @@
 import { renderHook } from '@testing-library/react';
 import { describe, expect, it } from 'vitest';
-import { usePrevious } from './usePrevious';
+import { usePrevious } from '../usePrevious';
 
 describe('usePrevious', () => {
   it('returns undefined on first render', () => {
