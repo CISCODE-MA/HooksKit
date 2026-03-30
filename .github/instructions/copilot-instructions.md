@@ -19,7 +19,6 @@
 
 - **State & Storage** (COMPT-30 ✅) — `useDebounce`, `useLocalStorage`, `useSessionStorage`
 - **DOM & Events** (COMPT-31 ✅) — `useMediaQuery`, `useWindowSize`, `useClickOutside`, `useIntersectionObserver`
-<<<<<<< HEAD
 - **Async & Lifecycle** (COMPT-32 ✅) — `usePrevious`, `useToggle`, `useInterval`, `useTimeout`, `useIsFirstRender`
 
 ### Module Responsibilities:

@@ -1,6 +1,6 @@
 import { renderHook } from '@testing-library/react';
 import { describe, expect, it } from 'vitest';
-import { useIsFirstRender } from './useIsFirstRender';
+import { useIsFirstRender } from '../useIsFirstRender';
 
 describe('useIsFirstRender', () => {
   it('returns true on first render', () => {
