@@ -1,6 +1,6 @@
 import { act, renderHook } from '@testing-library/react';
 import { afterEach, describe, expect, it, vi } from 'vitest';
-import { getWindowSize, useWindowSize } from './useWindowSize';
+import { getWindowSize, useWindowSize } from '../useWindowSize';
 
 function setViewport(width: number, height: number): void {
   Object.defineProperty(window, 'innerWidth', {

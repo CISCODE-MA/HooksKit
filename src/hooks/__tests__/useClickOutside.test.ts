@@ -1,7 +1,7 @@
 import { act, renderHook } from '@testing-library/react';
 import { useRef } from 'react';
 import { describe, expect, it, vi } from 'vitest';
-import { useClickOutside } from './useClickOutside';
+import { useClickOutside } from '../useClickOutside';
 
 function mountClickOutside(element: HTMLDivElement, handler: ReturnType<typeof vi.fn>) {
   return renderHook(() => {

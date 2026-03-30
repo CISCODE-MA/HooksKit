@@ -1,7 +1,7 @@
 import { act, renderHook } from '@testing-library/react';
 import { afterEach, describe, expect, expectTypeOf, it, vi } from 'vitest';
-import { readStorageValue } from './storage';
-import { useSessionStorage } from './useSessionStorage';
+import { readStorageValue } from '../storage';
+import { useSessionStorage } from '../useSessionStorage';
 
 describe('useSessionStorage', () => {
   afterEach(() => {
