@@ -21,6 +21,7 @@
 - **DOM & Events** (COMPT-31 ✅) — `useMediaQuery`, `useWindowSize`, `useClickOutside`, `useIntersectionObserver`
 - **Async & Lifecycle** (COMPT-32 ✅) — `usePrevious`, `useToggle`, `useInterval`, `useTimeout`, `useIsFirstRender`
 - **Test Suite** (COMPT-33 ✅) — Full coverage for all 12 hooks, all tests in `src/hooks/__tests__/`
+- **README & Publish** (COMPT-34 ✅) — Full README with usage examples, v0.1.0 published to `@ciscode/hooks-kit`
 
 ### Module Responsibilities:
 
