@@ -1,6 +1,6 @@
 {
   "name": "@ciscode/hooks-kit",
-  "version": "0.0.0",
+  "version": "0.1.0",
   "description": "12 production-ready React hooks. Zero runtime deps. SSR-safe. Groups: state and storage / DOM and events / async and lifecycle.",
   "license": "MIT",
   "private": false,
