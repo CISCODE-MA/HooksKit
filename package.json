@@ -1,7 +1,7 @@
 {
-  "name": "@ciscode/reactts-developerkit",
-  "version": "1.0.0",
-  "description": "React TypeScript hybrid library template (components + hooks + utils).",
+  "name": "@ciscode/hooks-kit",
+  "version": "0.1.0",
+  "description": "12 production-ready React hooks. Zero runtime deps. SSR-safe. Groups: state and storage / DOM and events / async and lifecycle.",
   "license": "MIT",
   "private": false,
   "type": "module",
@@ -15,6 +15,10 @@
       "import": "./dist/index.mjs",
       "require": "./dist/index.cjs"
     }
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/CISCODE-MA/HooksKit.git"
   },
   "main": "./dist/index.cjs",
   "module": "./dist/index.mjs",
